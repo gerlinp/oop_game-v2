@@ -15,9 +15,17 @@ class Game {
         ];
         this.activePhrase = null;
     }
+    
     getRandomPhrase() {
         return this.phrases[Math.floor(Math.random() * this.phrases.length)];
     }
 
+    startGame() {
+        document.querySelector('#overlay').style.display = 'none';
+        let randomPhrase = game.getRandomPhrase();
+        this.activePhrase = randomPhrase;
+        randomPhrase.addPhraseToDisplay();
+    }
 }
+
 
