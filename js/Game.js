@@ -22,6 +22,7 @@ class Game {
 
     startGame() {
         document.querySelector('#overlay').style.display = 'none';
+        
         let randomPhrase = game.getRandomPhrase();
         this.activePhrase = randomPhrase;
         randomPhrase.addPhraseToDisplay();

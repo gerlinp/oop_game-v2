@@ -3,11 +3,13 @@
  * app.js */
 
 
+
 const game = new Game();
+document.querySelector('#btn__reset').addEventListener('click', () => game.startGame())
 
-game.startGame();
 
-console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`)
+
+
 
 
 

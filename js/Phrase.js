@@ -3,13 +3,12 @@
  * Phrase.js */
 
 
-
-
 class Phrase {
     constructor(phrase) {
         this.phrase = phrase;
     }
     addPhraseToDisplay() {
+        document.querySelector('#phrase ul').innerHTML = '';
         this.activePhrase = this.phrase;
         for (let i = 0; i < this.phrase.length; i++) {
             let li = document.createElement('li');
