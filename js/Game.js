@@ -11,7 +11,7 @@ class Game {
         this.phrases = [
             new Phrase('life is like a box of chocolates'),
             new Phrase('there is no trying'),
-            new Phrase('May the force be with you'),
+            new Phrase('may the force be with you'),
             new Phrase('you have to see the matrix yourself'),
             new Phrase('you talking to me'),
         ];
@@ -25,6 +25,7 @@ class Game {
 
     // Removes overlay, selects a random phrase from array, and adds it to be displayed.
     startGame() {
+        game.restartGame()
         overlay.style.display = 'none';
         let randomPhrase = game.getRandomPhrase();
         this.activePhrase = randomPhrase;
@@ -42,8 +43,10 @@ class Game {
            }
     } 
     removeLife() {
-        document.querySelector('ol').removeChild(document.querySelector('.tries'));
-        if (document.querySelectorAll('.tries').length === 0) {
+        let tries = document.querySelectorAll('.tries')
+        tries[this.missed].innerHTML = `<img src=\"images/lostHeart.png\" alt=\"Heart Icon\" height=\"35\" width=\"30\">`
+        this.missed++;
+        if ( this.missed === 5) {
             overlay.style.display = 'flex';
             overlay.classList.add('lose')
             gameOver.style.display = 'block'
@@ -60,18 +63,28 @@ class Game {
         }
     }
 
-    handleInteraction(button) {
-        if((button.tagName === 'BUTTON')) {        
-            if (game.activePhrase.checkLetter(button.innerHTML)) {
-                game.activePhrase.showMatchedLetter(button.innerHTML);
-                button.classList.add('chosen')
-                game.gameOver();
-            }   else  {
-                button.classList.add('wrong')
-                game.removeLife()
-            } 
-        }
+    handleInteraction(button) {    
+        button.classList.add('chosen')          
+        if (game.activePhrase.checkLetter(button.innerHTML)) {
+            game.activePhrase.showMatchedLetter(button.innerHTML);
+            game.gameOver();
+        }   else  {
+            button.classList.add('wrong')
+            game.removeLife()
+        } 
+
     }
+
+    restartGame() {
+        document.querySelectorAll("#phrase li").innerHTML = "";
+        let buttons = document.querySelectorAll('.chosen')
+        buttons.forEach(button => {
+            button.className = '';
+            button.classList.add('key')
+        });
+    }
+
+
 
 
 }

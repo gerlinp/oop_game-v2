@@ -21,13 +21,18 @@
 * {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+  background-repeat: no-repeat;
+
 }
 
 body {
   justify-content: space-evenly;
   flex-direction: column;
   display: flex;
-  height: 100vh;
+  height: 100vh; 
+  background: url("../images/guess1.PNG") no-repeat   100%; 
+  background-size: cover;
+  overflow: hidden; 
 }
 
 li, ol, ul {
@@ -86,7 +91,7 @@ button {
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: #fff;
 }
 
 
@@ -173,6 +178,8 @@ button {
   left: 0;
   right: 0;
   border-radius: 5px;
+  background-size: cover;
+
 }
 
 .title {
@@ -180,7 +187,8 @@ button {
 }
 
 .start {
-  background-color: #3a3f58;
+
+  background-image: url("../images/start.PNG");
 }
 
 .start a {
@@ -188,7 +196,8 @@ button {
 }
 
 .win {
-  background-color: var(--color-win);
+  background: url("../images/win.gif") no-repeat  100%; 
+
 }
 
 .win a {
@@ -196,9 +205,21 @@ button {
 }
 
 .lose {
-  background-color: #f5785f;
+  background-image: url("../images/lose.PNG");
 }
 
 .lose a {
   color: var(--color-lose);
+}
+
+.window {
+  background: rgba(0, 0, 0, 0.5);
+
+}
+
+#overlay .window {
+  background: rgba(0, 0, 0, 0.5);
+  width:  55%;
+  padding: 50px;
+  margin: 0 auto;
 }
