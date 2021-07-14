@@ -30,7 +30,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh; 
-  background: url("../images/guess1.PNG") no-repeat   100%; 
+  background: url("../images/guess1.PNG") no-repeat 100%; 
   background-size: cover;
   overflow: hidden; 
 }
