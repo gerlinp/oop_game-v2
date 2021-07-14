@@ -4,6 +4,8 @@
 
 let overlay = document.querySelector('#overlay');
 let gameOver =  document.querySelector('#game-over-message');
+let gameComplete = false
+
 
 class Game {
     constructor() {
@@ -43,8 +45,8 @@ class Game {
            }
     } 
     removeLife() {
-        let tries = document.querySelectorAll('.tries')
-        tries[this.missed].innerHTML = `<img src=\"images/lostHeart.png\" alt=\"Heart Icon\" height=\"35\" width=\"30\">`
+        let tries = document.querySelectorAll('.tries img')
+        tries[this.missed].src = 'images/lostHeart.png';
         this.missed++;
         if ( this.missed === 5) {
             overlay.style.display = 'flex';
@@ -57,36 +59,43 @@ class Game {
     gameOver() {
         if (this.checkForWin()) {
             overlay.style.display = 'flex';
-            overlay.classList.add('win');
+            overlay.className = 'win';
             gameOver.style.display = 'block'
             gameOver.innerHTML = 'Great Job!'
+            gameComplete = true;
+        } else if (this.missed === 5) {
+            overlay.style.display = 'flex';
+            overlay.className = 'lose';
+            gameOver.style.display = 'block';
+            gameOver.innerHTML = 'Sorry, better luck next time!';
+            gameComplete = true;
         }
+  
     }
 
     handleInteraction(button) {    
         button.classList.add('chosen')          
         if (game.activePhrase.checkLetter(button.innerHTML)) {
             game.activePhrase.showMatchedLetter(button.innerHTML);
-            game.gameOver();
         }   else  {
             button.classList.add('wrong')
             game.removeLife()
         } 
-
+        game.gameOver();
     }
 
     restartGame() {
+        gameComplete = false;
         document.querySelectorAll("#phrase li").innerHTML = "";
-        let buttons = document.querySelectorAll('.chosen')
+        let buttons = document.querySelectorAll('.chosen');
+        this.missed = 0;
         buttons.forEach(button => {
             button.className = '';
             button.classList.add('key')
         });
+        let hearts = document.querySelectorAll('.tries img')
+        hearts.forEach(heart => {
+            heart.src = 'images/liveHeart.png'
+        });
     }
-
-
-
-
 }
-
-
